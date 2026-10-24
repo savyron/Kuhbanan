@@ -391,6 +391,12 @@ button,a{-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+.credit{color:var(--gold2);font-weight:800;direction:ltr;display:inline-block;border-bottom:1px dashed var(--gold3);transition:.2s}
+.credit:hover{color:var(--gold);border-bottom-style:solid}
+
+.credit{color:#a855f7;border-bottom:1px dashed #7e3bd0}
+.credit:hover{color:#c084fc;border-bottom-style:solid;text-shadow:0 0 12px rgba(168,85,247,.55)}
 </style>
 </head>
 <body>
@@ -499,7 +505,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 <footer class="footer">
   <div class="container">
     <div class="seals" id="seals"></div>
-    <p>© تمامی حقوق برای <span id="footName"></span> محفوظ است.</p>
+    <p>© تمامی حقوق مربوط به <a class="credit" href="https://savyron.github.io/savyron/" target="_blank" rel="noopener">Savyron Team</a> است.</p>
   </div>
 </footer>
 
@@ -642,7 +648,6 @@ const BADGES = [
   // اطلاعات سایت
   document.title = SITE.name + ' | لوازم یدکی ماشین‌آلات سنگین و ابزارآلات';
   $('brandName').textContent = SITE.name;
-  $('footName').textContent = SITE.name;
   $('cAddress').textContent = SITE.address;
   $('cHours').textContent = SITE.hours;
   $('cPhone').textContent = SITE.phone;
