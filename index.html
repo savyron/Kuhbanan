@@ -561,7 +561,7 @@ button,a{-webkit-tap-highlight-color:transparent}
    هر محصول:
    { id, name, category, price (تومان؛ صفر = تماس بگیرید), brand, desc, icon }
    دسته‌بندی‌ها را هم در آرایه CATEGORIES تغییر بدهید.
-   (فعلاً نمونه هستند؛ لیست واقعی را که دادید جایگزین می‌کنم)
+   (قیمت‌ها = نرخ فاکتور + ۳۰٪، گرد شده به هزار تومان)
    ===================================================== */
 
 const SITE = {
@@ -574,28 +574,66 @@ const SITE = {
 };
 
 const CATEGORIES = [
-  { id: "engine",    name: "قطعات موتور",        icon: "⚙️" },
-  { id: "hydraulic", name: "هیدرولیک",           icon: "🛢️" },
-  { id: "filter",    name: "فیلتر و روغن",       icon: "🧪" },
-  { id: "brake",     name: "ترمز و کلاچ",        icon: "🛑" },
-  { id: "under",     name: "شاسی و زنجیر",       icon: "🚜" },
-  { id: "electric",  name: "برقی و باتری",       icon: "🔋" },
-  { id: "tools",     name: "آچار و ابزارآلات",   icon: "🔧" }
+  { id: "cooling", name: "سیستم خنک‌کاری", icon: "❄️" },
+  { id: "airpump", name: "پمپ باد", icon: "💨" },
+  { id: "clutch", name: "کلاچ و گیربکس", icon: "⚙️" },
+  { id: "fuel", name: "گازوئیل و سوخت", icon: "⛽" },
+  { id: "wheel", name: "چرخ و توپی", icon: "🛞" },
+  { id: "exhaust", name: "اگزوز و منیفولد", icon: "🔥" },
+  { id: "tools", name: "آچار و ابزارآلات", icon: "🔧" }
 ];
 
 const PRODUCTS = [
-  { id: 1,  name: "پمپ هیدرولیک بیل مکانیکی",   category: "hydraulic", price: 0,        brand: "نمونه", desc: "پمپ هیدرولیک مناسب بیل‌های مکانیکی رده ۲۰ تن.", icon: "🛢️" },
-  { id: 2,  name: "جک هیدرولیک تلسکوپی",         category: "hydraulic", price: 18500000, brand: "نمونه", desc: "جک پرقدرت مخصوص کمپرسی و لیفتراک.", icon: "🛢️" },
-  { id: 3,  name: "فیلتر گازوئیل کمپرسی",        category: "filter",    price: 450000,   brand: "نمونه", desc: "فیلتر سوخت با کیفیت بالا.", icon: "🧪" },
-  { id: 4,  name: "فیلتر هوا لودر",              category: "filter",    price: 780000,   brand: "نمونه", desc: "فیلتر هوای صنعتی دو‌مرحله‌ای.", icon: "🧪" },
-  { id: 5,  name: "ست پیستون و رینگ",            category: "engine",    price: 0,        brand: "نمونه", desc: "ست کامل پیستون و رینگ موتور دیزل سنگین.", icon: "⚙️" },
-  { id: 6,  name: "واترپمپ موتور دیزل",          category: "engine",    price: 3200000,  brand: "نمونه", desc: "واترپمپ اصلی با ضمانت.", icon: "⚙️" },
-  { id: 7,  name: "صفحه کلاچ ۴۳۰",               category: "brake",     price: 6800000,  brand: "نمونه", desc: "صفحه کلاچ سنگین، مناسب کامیون و لودر.", icon: "🛑" },
-  { id: 8,  name: "لنت ترمز کامیون (ست)",        category: "brake",     price: 2400000,  brand: "نمونه", desc: "لنت ترمز با دوام بالا.", icon: "🛑" },
-  { id: 9,  name: "زنجیر شاسی بولدوزر",          category: "under",     price: 0,        brand: "نمونه", desc: "زنجیر و غلتک زیر‌شاسی بولدوزر و بیل.", icon: "🚜" },
-  { id: 10, name: "باتری ۱۸۰ آمپر",              category: "electric",  price: 9800000,  brand: "نمونه", desc: "باتری مخصوص ماشین‌آلات سنگین.", icon: "🔋" },
-  { id: 11, name: "ست آچار بکس ۷۲ پارچه",        category: "tools",     price: 5600000,  brand: "نمونه", desc: "ست کامل آچار بکس با جعبه فلزی.", icon: "🔧" },
-  { id: 12, name: "آچار جغجغه‌ای سنگین",         category: "tools",     price: 1900000,  brand: "نمونه", desc: "آچار جغجغه‌ای ۱ اینچ مخصوص کارگاه.", icon: "🔧" }
+  { id: 1, name: "درب ترموستات بنز ده تن و مایلر", category: "cooling", price: 897000, unit: "عدد", desc: "" },
+  { id: 2, name: "واسطه آهنی واترپمپ بنز مایلر", category: "cooling", price: 250000, unit: "عدد", desc: "" },
+  { id: 3, name: "لوله خم آلومینیومی واترپمپ بنز ده تن و مایلر", category: "cooling", price: 2074000, unit: "عدد", desc: "" },
+  { id: 4, name: "لوله آب آلومینیومی کوتاه بنز ده تن", category: "cooling", price: 2074000, unit: "عدد", desc: "" },
+  { id: 5, name: "درب رادیاتور کامیونت ایسوزو و هیوندای", category: "cooling", price: 273000, unit: "عدد", desc: "" },
+  { id: 6, name: "کیت واشرآلات سوزو ۱ میل واترپمپ بنز ده تن و مایلر", category: "cooling", price: 161000, unit: "عدد", desc: "" },
+  { id: 7, name: "لاستیک زیر رادیاتور بنز خاور", category: "cooling", price: 211000, unit: "عدد", desc: "" },
+  { id: 8, name: "اهرم کوتاه کلاچ بنز ده تن", category: "clutch", price: 577000, unit: "عدد", desc: "" },
+  { id: 9, name: "اهرم کوتاه کلاچ بنز مایلر", category: "clutch", price: 577000, unit: "عدد", desc: "" },
+  { id: 10, name: "اهرم بلند کلاچ بنز مایلر", category: "clutch", price: 1482000, unit: "عدد", desc: "" },
+  { id: 11, name: "اهرم بلند کلاچ بنز ده تن", category: "clutch", price: 1404000, unit: "عدد", desc: "" },
+  { id: 12, name: "اورینگ درب جلو کارتل پمپ باد ۸۸ NBR", category: "airpump", price: 29000, unit: "عدد", desc: "" },
+  { id: 13, name: "اورینگ درب جلو کارتل پمپ باد ۹۰ NBR", category: "airpump", price: 29000, unit: "عدد", desc: "" },
+  { id: 14, name: "اورینگ روغنی NBR ترموستات بنز ده تن/مایلر", category: "cooling", price: 18000, unit: "عدد", desc: "" },
+  { id: 15, name: "اورینگ روغنی فلانژ واترپمپ بنز ده تن و مایلر ۴ عددی", category: "cooling", price: 150000, unit: "بسته", desc: "" },
+  { id: 16, name: "اورینگ لاستیکی توپی چرخ عقب بنز ده تن و مایلر", category: "wheel", price: 179000, unit: "عدد", desc: "" },
+  { id: 17, name: "واشر فنری توپی چرخ بنز ده تن بسته ۱۰ عددی", category: "wheel", price: 255000, unit: "بسته", desc: "" },
+  { id: 18, name: "واشر لاستیکی استکانی گازوئیل بسته ۵ عددی", category: "fuel", price: 86000, unit: "بسته", desc: "" },
+  { id: 19, name: "واشر لایتر ضخیم پشت کاسه نمد چرخ عقب ده تن مایلر", category: "wheel", price: 117000, unit: "عدد", desc: "" },
+  { id: 20, name: "واشر لایتر ضخیم پشت کنس چرخ عقب ده تن", category: "wheel", price: 91000, unit: "عدد", desc: "" },
+  { id: 21, name: "واشر نسوز چهار پایه بی‌تی‌او", category: "exhaust", price: 44000, unit: "عدد", desc: "" },
+  { id: 22, name: "واشرآلات نسوز کامل گیربکس بنز مایلر", category: "clutch", price: 1106000, unit: "دست", desc: "" },
+  { id: 23, name: "واشر سیمی منیفولد هوا بنز ده تن و مایلر", category: "exhaust", price: 448000, unit: "دست", desc: "" },
+  { id: 24, name: "واشر بغل اگزوز آهنی طرح مس تک لایه نوردار", category: "exhaust", price: 239000, unit: "دست", desc: "" },
+  { id: 25, name: "جاکاسه نمدی (رنگی) چرخ جلو ده تن مایلر", category: "wheel", price: 672000, unit: "عدد", desc: "" },
+  { id: 26, name: "توپی تک استکانی گازوئیل بنز ده تن", category: "fuel", price: 55000, unit: "عدد", desc: "" },
+  { id: 27, name: "پروانه موتور آهنی غریب بنز ده تن و مایلر", category: "cooling", price: 4004000, unit: "عدد", desc: "" },
+  { id: 28, name: "پولی تک تسمه واترپمپ بنز ده تن و مایلر", category: "cooling", price: 1788000, unit: "عدد", desc: "" },
+  { id: 29, name: "پولی دو تسمه چدنی واترپمپ بنز ۹۱۱", category: "cooling", price: 1358000, unit: "عدد", desc: "" },
+  { id: 30, name: "پولی واترپمپ بنز ده تن و مایلر", category: "cooling", price: 2074000, unit: "عدد", desc: "" },
+  { id: 31, name: "ترموستات ۷۵ درجه بنز ده تن و مایلر ماهله", category: "cooling", price: 1570000, unit: "عدد", desc: "" },
+  { id: 32, name: "درب ترموستات بنز خاور", category: "cooling", price: 417000, unit: "عدد", desc: "" },
+  { id: 33, name: "نعلبکی کلاچ", category: "clutch", price: 560000, unit: "عدد", desc: "" },
+  { id: 34, name: "پیچ ۱۴ ساچمه دار گازوئیل‌برگردان بنز ده تن", category: "fuel", price: 191000, unit: "عدد", desc: "" },
+  { id: 35, name: "پیچ تکی هوایگیری گازوئیل بنز ده تن و مایلر", category: "fuel", price: 49000, unit: "عدد", desc: "" },
+  { id: 36, name: "جا ترموستات چدنی بنز ده تن و مایلر", category: "cooling", price: 1416000, unit: "عدد", desc: "" },
+  { id: 37, name: "لوله آب آلومینیومی بلند بنز ده تن", category: "cooling", price: 2502000, unit: "عدد", desc: "" },
+  { id: 38, name: "لاستیک واسطه لوله آب بنز ده تن و مایلر درجه ۱", category: "cooling", price: 65000, unit: "عدد", desc: "" },
+  { id: 39, name: "واسطه چدنی پروانه بنز ده تن مایلر", category: "cooling", price: 608000, unit: "عدد", desc: "" },
+  { id: 40, name: "لاستیک زیر رادیاتور بنز ده تن", category: "cooling", price: 161000, unit: "عدد", desc: "" },
+  { id: 41, name: "درب رادیاتور آلومینیومی بنز ده تن", category: "cooling", price: 285000, unit: "عدد", desc: "" },
+  { id: 42, name: "پیچ ضخیم بلند رگلاژ پمپ باد بنز ده تن و مایلر", category: "airpump", price: 138000, unit: "عدد", desc: "" },
+  { id: 43, name: "پیچ ضخیم رگلاژ پمپ باد بنز ده تن و مایلر", category: "airpump", price: 101000, unit: "عدد", desc: "" },
+  { id: 44, name: "کیت واشرآلات کامل پمپ باد ۸۸", category: "airpump", price: 472000, unit: "عدد", desc: "" },
+  { id: 45, name: "کیت واشرآلات کامل پمپ باد ۹۰", category: "airpump", price: 486000, unit: "عدد", desc: "" },
+  { id: 46, name: "کیت واشرآلات کامل پمپ باد ۹۰ autoturbo", category: "airpump", price: 515000, unit: "دست", desc: "" },
+  { id: 47, name: "واشر مسی دو قلو گازوئیل بنز ده تن بسته ۱۰ عددی", category: "fuel", price: 281000, unit: "بسته", desc: "" },
+  { id: 48, name: "واشر نسوز ۱ میل توپی کولینگ بنز ده تن و مایلر", category: "cooling", price: 202000, unit: "عدد", desc: "" },
+  { id: 49, name: "واشر فلزی ۴ سوراخ کولینگ بنز ده تن ۱۹۲۱ و مایلر بسته ۴ عددی", category: "cooling", price: 329000, unit: "بسته", desc: "" },
+  { id: 50, name: "واشر سیمی پوسته کولینگ بنز ده تن و مایلر", category: "cooling", price: 374000, unit: "دست", desc: "" }
 ];
 
 /* =====================================================
@@ -662,7 +700,7 @@ const BADGES = [
   // دسته‌بندی‌ها
   $('catGrid').innerHTML = CATEGORIES.map((c) => {
     const n = PRODUCTS.filter((p) => p.category === c.id).length;
-    return `<div class="cat" data-cat="${c.id}"><div class="ic">${c.icon}</div><h4>${c.name}</h4><small>${fa(n)} محصول</small></div>`;
+    return `<div class="cat" data-cat="${c.id}"><div class="ic">${c.icon}</div><h4>${c.name}</h4><small>${n ? fa(n) + ' محصول' : 'به‌زودی'}</small></div>`;
   }).join('');
   $('catGrid').addEventListener('click', (e) => {
     const el = e.target.closest('.cat');
@@ -700,7 +738,7 @@ const BADGES = [
         <div class="card-b">
           <span class="tag">${cat ? cat.name : ''}</span>
           <h3>${p.name}</h3>
-          <p>${p.desc || ''}</p>
+          <p>${p.desc || (p.unit ? 'واحد فروش: ' + p.unit : '')}</p>
           <div class="price">${priceTxt(p.price)}</div>
           <button class="add" data-id="${p.id}">افزودن به سبد</button>
         </div></article>`;
